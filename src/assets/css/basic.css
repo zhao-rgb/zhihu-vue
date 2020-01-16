@@ -1,0 +1,132 @@
+li,
+ol,
+ul {
+	list-style: none;
+}
+/* -----------布局设置---------- */
+.zh-container {	
+	width: 95%;
+	margin: auto;
+	padding-top: 80px;	
+	margin-top: 80px;
+	background-color: blue;
+}
+
+.zh-row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* 栅格 */
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	padding: 10px;
+}
+
+.zh-col-12 {
+	flex: 1 1 100%;
+}
+
+.zh-col-8 {
+	flex: 1 1 66.6%;
+
+}
+
+.zh-col-6 {
+	flex: 1 1 50%;
+}
+
+.zh-col-4 {
+	flex: 1 1 33.3%;
+}
+
+.zh-col-3 {
+	flex: 1 1 25%;
+
+}
+
+.zh-col-2 {
+	flex: 1 1 16.6%;
+}
+
+.zh-col-1 {
+	flex: 1 1 8.3%;
+}
+
+/* -----------对齐方式设置---------- */
+/* flex横向布局的对齐,横向居中,纵向居中 */
+.zh-fx-center {
+	justify-content: center;
+}
+
+/* flex横向布局的对齐,横向左对齐,纵向居中 */
+.zh-fx-left {
+	justify-content: flex-start;
+}
+
+/* flex横向布局的对齐,横向右对齐,纵向居中 */
+.zh-fx-right {
+	justify-content: flex-end;
+}
+
+/* flex横向布局的对齐,横向两端对齐，纵向居中 */
+.zh-fx-between {
+	justify-content: space-between;
+}
+
+/* flex横向布局的对齐,横向均匀分布，纵向居中 */
+.zh-fx-around {
+	justify-content: space-around;
+}
+
+.flex-center-y {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-top-y {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: space-between;
+}
+
+.zh-center {
+	text-align: center;
+}
+
+/* 指定统一前缀的class样式 */
+[class*='zh-fx'] {
+	display: flex;
+	align-items: center;
+}
+
+/* flex纵向布局的对齐,横向居中，纵向顶端对齐 */
+.zh-fx-top {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+/* 间距 */
+.gutter {
+	margin-right: 10px;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.7);
+	cursor: pointer;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}

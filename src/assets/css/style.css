@@ -1,0 +1,14 @@
+/* 导航条设置 */
+.zh-nav {
+	height: 70px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	background-color: rgb(165,214,167); 
+}
+.zh-nav-bar {
+	width: 85%;
+	margin: 0 auto;
+}

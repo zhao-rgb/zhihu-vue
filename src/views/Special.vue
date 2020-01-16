@@ -1,41 +1,159 @@
 <template>
 	<div>
-			<div class="banner">
-				<img src="" alt="">
-				<h3>全部专题</h3>
-			</div>
-			<div class="zh-container">
-				<div class="zh-row" v-for="(item,index) in specials" :key="index">
-					<div class="zh-col-4"><img :src="item.banner" alt=""></div>
-					<div class="zh-col-8">
-						<h3>{{item.title}}</h3>
-						<p class="meta">{{item.updated}}更新,{{item.viewCount}}次浏览</p>
-						<p class="introduction">{{item.introduction}}</p>
-						<span v-for="(section,index) in item.sections" :key="index" class="section">
-							{{section.sectionTitle}}
-						</span>
+		<div class="topic-head">
+			<img src="../assets/image/4.png" class="p" />
+			<h2 style="margin-top: 5px;">所有专题</h2>
+			<h4>共有489个专题</h4>
+		</div>
+		<div class="container">
+			<div class="row" v-for="(item, index) in specials" :key="index">
+				<div class="left"><img :src="item.banner" alt="" /></div>
+				<div class="right">
+					<div class="w-row">
+						<h3 style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ item.title }}</h3>
+						<button class="button"><h4>关注专题</h4></button>
 					</div>
+
+					<p class="meta">{{ item.updated }}更新·{{ item.viewCount }}次浏览</p>
+					<p class="introduction">{{ item.introduction }}</p>
+					<span v-for="(section, index) in item.sections" :key="index" class="section">{{ section.sectionTitle }}</span>
 				</div>
 			</div>
 		</div>
+
+
+		<div class="sss">
+			<div>
+				<a href="#top"><i class="iconfont shadow" style="font-size: 60px; color: red;">&#xe6ab;</i></a>
+			</div>
+		</div>
+		
+		
+	</div>
 </template>
 
 <script>
-	export default{
-		name:'special',
-		data(){
-			return{
-				specials:[]
-			};
-		},
-		created() {
-			this.axios.get('').then(res =>{
-				console.log(res);
-				this.specials = res.data.data;
-			});
-		}
-	};
+export default {
+	name: 'special',
+	data() {
+		return {
+			specials: []
+		};
+	},
+	created() {
+		this.axios.get('http://localhost:8080/api/special/all').then(res => {
+			console.log(res);
+			this.specials = res.data.data;
+		});
+	}
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
+@font-face {
+  font-family: 'iconfont';  /* project id 1434161 */
+  src: url('//at.alicdn.com/t/font_1434161_ohoso8qdou.eot');
+  src: url('//at.alicdn.com/t/font_1434161_ohoso8qdou.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.svg#iconfont') format('svg');
+}
+.iconfont {
+	font-family: 'iconfont' !important;
+	font-size: 16px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
+}
+.sss {
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	right: 70px;
+	bottom: 40px;
+}
+.topic-head {
+	display: flex;
+	background-color: rgb(255, 255, 255);
+	margin-top: -10px;
+	height: 100px;
+	padding-left: 100px;
+	padding-top: 28px;
+}
+.p{
+	width: 60px;
+}
+.topic-head h4 {
+	padding-top: 8px;
+	margin-left: 20px;
+	color: darkgray;
+}
+.container {
+	display: block;
+	margin: auto;
+	width: 80%;
+	margin-top: 15px;
+}
+.row {
+	background-color: rgb(255, 255, 255);
+	display: flex;
+	height: 200px;
+	margin: 15px;
+	border-radius: 10px;
+	margin-top: -50px;
+}
+.left {
+	width: 30%;
+
+	text-align: center;
+}
+.left img {
+	width: 90%;
+	margin-top: 25px;
+	height: 150px;
+	border-radius: 10px;
+}
+.right {
+	margin-top: 20px;
+	width: 60%;
+	margin-right: 20px;
+}
+.w-row h3 {
+	width: 80%;
+}
+.button {
+	width: 100px;
+	border: none;
+	background-color: rgb(235, 245, 255);
+	color: rgb(30, 134, 255);
+	height: 40px;
+	border-radius: 5px;
+	position: absolute;
+	left: 1010px;
+	margin-top: -30px;
+}
+.meta {
+	color: darkgray;
+	font-size: 13px;
+}
+.introduction {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box; /*重点，不能用block等其他*/
+	-webkit-line-clamp: 2; /*重点IE和火狐不支持*/
+	-webkit-box-orient: vertical; /*重点*/
+}
+.section {
+	background-color: rgb(246, 246, 246);
+	width: auto;
+	margin-right: 10px;
+	padding: 2px;
+	font-size: 13px;
+	border-radius: 5px;
+}
 </style>

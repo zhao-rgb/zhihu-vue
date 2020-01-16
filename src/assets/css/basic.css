@@ -1,15 +1,20 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 li,
 ol,
 ul {
 	list-style: none;
+	margin-right: 10px;
 }
 /* -----------布局设置---------- */
-.zh-container {	
-	width: 95%;
-	margin: auto;
-	padding-top: 80px;	
-	margin-top: 80px;
-	background-color: blue;
+.zh-container {
+	width: 70%;
+	margin-left: 260px;
+	padding-top: 80px;
+	background-color: white;
 }
 
 .zh-row {

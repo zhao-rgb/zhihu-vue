@@ -1,6 +1,6 @@
 /* 导航条设置 */
 .zh-nav {
-	height: 70px;
+	height: 60px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -42,4 +42,8 @@
 	border-radius: 10%;
 	cursor: pointer;
 	color: rgb(30, 134, 255);
+}
+.zh-shadow{
+	box-shadow: 2px 5px 10px rgb(165,214,167);
+	
 }

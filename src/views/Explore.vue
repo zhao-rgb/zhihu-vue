@@ -1,31 +1,54 @@
 <template>
-	<div>
-			<div class="head">
-				<img src="" alt="" />
-				<i class="iconfont">&#xe65d;</i>
-				<h2>最新专题</h2>
-			</div>
-			<div class="row">
-				<div class="explore" v-for="(item, index) in specials" :key="index">
-					<img :src="item.banner" alt="" />
-					<div class="row">
-						<div class="left">
-							<h3>{{ item.title }}</h3>
-							<h5 class="meta">{{ item.updated }}更新,{{ item.viewCount }}次浏览</h5>
-						</div>
-						<div class="right">
-							<button class="button"><h4>关注专题</h4></button>
-						</div>
+	<div class="all">
+		<div class="head">
+			<img src="" alt="" />
+			<i class="iconfont">&#xe65d;</i>
+			<h2>最新专题</h2>
+		</div>
+		<div class="row">
+			<div class="explore" v-for="(item, index) in specials" :key="index">
+				<img :src="item.banner" alt="" />
+				<div class="row">
+					<div class="left">
+						<h3>{{ item.title }}</h3>
+						<h5 class="meta">{{ item.updated }}更新,{{ item.viewCount }}次浏览</h5>
 					</div>
-
-					<p class="introduction">{{ item.introduction }}</p>
-
-					<span v-for="(section, index) in item.sections" :key="index" class="section">{{ section.sectionTitle }}</span>
+					<div class="right">
+						<button class="button"><h4>关注专题</h4></button>
+					</div>
 				</div>
+
+				<p class="introduction">{{ item.introduction }}</p>
+
+				<span v-for="(section, index) in item.sections" :key="index" class="section">{{ section.sectionTitle }}</span>
 			</div>
-			<div class="k">
-				<router-link to="/special/all"><button class="btn-circle">查看所有</button></router-link>
+		</div>
+		<div class="k">
+			<router-link to="/special/all"><button class="btn-circle">查看更多专题</button></router-link>
+		</div>
+		
+		
+		<div class="head">
+			<img src="../assets/image/6.png" />
+			<h2>圆桌讨论</h2>
+		</div>
+		<div class="row ">
+			<div class="exploree" v-for="(item, index) in roundTables" :key="index">
+				<img :src="item.banner"  />
+				<div class="row">
+					<div class="left">
+						<h3>{{ item.name }}</h3>
+						<h5 class="meta">{{ item.includeCount }}参与,{{ item.visitsCount }}次浏览</h5>
+					</div>
+					<div class="right">
+						<button class="button"><h4>关注圆桌</h4></button>
+					</div>
+				</div>				
 			</div>
+		</div>
+		<div class="k">
+			<router-link to="roundtable"><button class="btn-circle">查看更多圆桌</button></router-link>
+		</div>
 	</div>
 </template>
 
@@ -34,7 +57,8 @@ export default {
 	name: 'hot',
 	data() {
 		return {
-			specials: []
+			specials: [],
+			roundTables:[]
 		};
 	},
 	created() {
@@ -42,11 +66,18 @@ export default {
 			console.log(res);
 			this.specials = res.data.data;
 		});
+		this.axios.get('http://localhost:8080/api/roundTable').then(res => {
+			console.log(res);
+			this.roundTables = res.data.data;
+		});
 	}
 };
 </script>
 
 <style lang="scss" scoped>
+.all {
+	background-color: rgb(246, 246, 246);
+}
 @font-face {
 	font-family: 'iconfont'; /* project id 1616266 */
 	src: url('//at.alicdn.com/t/font_1616266_b8gknsgz736.eot');
@@ -78,7 +109,6 @@ export default {
 .head {
 	display: flex;
 	align-items: center;
-	
 }
 .explore {
 	box-shadow: 2px 5px 5px #aaa;
@@ -90,6 +120,18 @@ export default {
 .explore img {
 	border-radius: 5px;
 	width: 100%;
+}
+.exploree {
+	box-shadow: 2px 5px 5px #aaa;
+	width: 46%;
+	margin: 1%;
+	height: 430px;
+	background-color: rgb(255, 255, 255);
+}
+.exploree img {
+	border-radius: 5px;
+	width: 100%;
+	height: 250px;
 }
 .left {
 	height: 100px;
@@ -103,7 +145,6 @@ export default {
 	height: 100px;
 	width: 20%;
 	padding-top: 20px;
-	
 }
 .button {
 	width: 90%;
@@ -113,7 +154,7 @@ export default {
 	height: 40px;
 	border-radius: 5px;
 }
-.k{
+.k {
 	display: flex;
 	align-items: center;
 	margin-left: 460px;

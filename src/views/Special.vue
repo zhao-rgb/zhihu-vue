@@ -1,12 +1,12 @@
 <template>
-	<div>
+	<div class="all">
 		<div class="topic-head">
-			<img src="../assets/image/4.png" class="p" />
+			<img src="../assets/image/5.png" />
 			<h2 style="margin-top: 5px;">所有专题</h2>
 			<h4>共有489个专题</h4>
 		</div>
 		<div class="container">
-			<div class="row" v-for="(item, index) in specials" :key="index">
+			<div class="row zh-shadow" v-for="(item, index) in specials" :key="index">
 				<div class="left"><img :src="item.banner" alt="" /></div>
 				<div class="right">
 					<div class="w-row">
@@ -52,12 +52,12 @@ export default {
 <style lang="scss" scoped>
 @font-face {
   font-family: 'iconfont';  /* project id 1434161 */
-  src: url('//at.alicdn.com/t/font_1434161_ohoso8qdou.eot');
-  src: url('//at.alicdn.com/t/font_1434161_ohoso8qdou.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1434161_ohoso8qdou.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot');
+  src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.svg#iconfont') format('svg');
 }
 .iconfont {
 	font-family: 'iconfont' !important;
@@ -66,6 +66,9 @@ export default {
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-stroke-width: 0.2px;
 	-moz-osx-font-smoothing: grayscale;
+}
+.all{
+	background-color: rgb(246, 246, 246);
 }
 .sss {
 	width: 50px;
@@ -76,10 +79,10 @@ export default {
 }
 .topic-head {
 	display: flex;
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(246, 246, 246);
 	margin-top: -10px;
-	height: 100px;
-	padding-left: 100px;
+	height: 80px;
+	padding-left: 20px;
 	padding-top: 28px;
 }
 .p{
@@ -93,16 +96,17 @@ export default {
 .container {
 	display: block;
 	margin: auto;
-	width: 80%;
-	margin-top: 15px;
+	width: 90%;
+	margin-left: 10px;
+	// margin-top: 5px;
 }
 .row {
 	background-color: rgb(255, 255, 255);
 	display: flex;
-	height: 200px;
+	height: 250px;
 	margin: 15px;
 	border-radius: 10px;
-	margin-top: -50px;
+	/* margin-top: -50px; */
 }
 .left {
 	width: 30%;

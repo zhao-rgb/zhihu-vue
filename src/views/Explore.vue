@@ -18,36 +18,35 @@
 					</div>
 				</div>
 
-				<p class="introduction">{{ item.introduction }}</p>
+				<p class="introduction">{{item.introduction}}</p>
 
 				<span v-for="(section, index) in item.sections" :key="index" class="section">{{ section.sectionTitle }}</span>
 			</div>
 		</div>
 		<div class="k">
-			<router-link to="/special/all"><button class="btn-circle">查看更多专题</button></router-link>
+			<router-link to="/special/all"><button class="btn-circle">查看更多专题></button></router-link>
 		</div>
-		
-		
+
 		<div class="head">
 			<img src="../assets/image/6.png" />
 			<h2>圆桌讨论</h2>
 		</div>
 		<div class="row ">
 			<div class="exploree" v-for="(item, index) in roundTables" :key="index">
-				<img :src="item.banner"  />
+				<img :src="item.banner" />
+				<h3 class="name">{{ item.name }}</h3>
+				<button class="butt"><h4>关注圆桌</h4></button>
+				<h5 class="liu">{{ item.includeCount }}位嘉宾参与 | {{ item.visitsCount }}次浏览</h5>
 				<div class="row">
 					<div class="left">
-						<h3>{{ item.name }}</h3>
-						<h5 class="meta">{{ item.includeCount }}参与,{{ item.visitsCount }}次浏览</h5>
+						<p >{{item.urlToken}}</p>
 					</div>
-					<div class="right">
-						<button class="button"><h4>关注圆桌</h4></button>
-					</div>
-				</div>				
+					
+				</div>
 			</div>
 		</div>
 		<div class="k">
-			<router-link to="roundtable"><button class="btn-circle">查看更多圆桌</button></router-link>
+			<router-link to="roundtable"><button class="btn-circle">查看更多圆桌></button></router-link>
 		</div>
 	</div>
 </template>
@@ -58,7 +57,7 @@ export default {
 	data() {
 		return {
 			specials: [],
-			roundTables:[]
+			roundTables: []
 		};
 	},
 	created() {
@@ -122,11 +121,34 @@ export default {
 	width: 100%;
 }
 .exploree {
+	position: relative;
 	box-shadow: 2px 5px 5px #aaa;
 	width: 46%;
 	margin: 1%;
 	height: 430px;
 	background-color: rgb(255, 255, 255);
+}
+.butt{
+	position: absolute;
+	border: none;
+	background-color: rgb(245, 245, 245);
+	color: rgb(30, 134, 255);
+	height: 40px;
+	width: 80px;
+	bottom: 45%;
+	left: 80%;
+	border-radius: 5px;
+}
+.liu{
+	position: absolute;
+	bottom: 55%;
+	left: 8%;
+}
+.name {
+	position: absolute;
+	bottom: 70%;
+	left: 5%;
+	
 }
 .exploree img {
 	border-radius: 5px;
@@ -144,12 +166,12 @@ export default {
 .right {
 	height: 100px;
 	width: 20%;
-	padding-top: 20px;
+	padding-top:20px;
 }
 .button {
 	width: 90%;
 	border: none;
-	background-color: rgb(235, 245, 255);
+	background-color: rgb(245, 245, 245);
 	color: rgb(30, 134, 255);
 	height: 40px;
 	border-radius: 5px;
@@ -157,6 +179,9 @@ export default {
 .k {
 	display: flex;
 	align-items: center;
-	margin-left: 460px;
+	margin-left: 520px;
+}
+.introduction{
+	margin-left: 30px;
 }
 </style>

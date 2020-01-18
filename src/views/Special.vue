@@ -137,6 +137,7 @@ export default {
 	position: absolute;
 	left: 1010px;
 	margin-top: -30px;
+	margin-left: 40px;
 }
 .meta {
 	color: darkgray;

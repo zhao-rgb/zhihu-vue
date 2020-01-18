@@ -3,11 +3,38 @@
 	margin: 0;
 	padding: 0;
 }
+
+img {
+	border: none;
+}
 li,
 ol,
 ul {
 	list-style: none;
-	margin-right: 10px;
+}
+
+button,
+input,
+select,
+textarea {
+	box-sizing: border-box;
+	outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 600;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	text-decoration: none;
 }
 /* -----------布局设置---------- */
 .zh-container {

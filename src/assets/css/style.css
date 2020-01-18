@@ -37,13 +37,18 @@
 
 .btn-circle {
 	border: none;
-	width: 120px;
-	height: 60px;
-	border-radius: 10%;
+	align-items: center;
+	padding: 0 14px 0 24px;
+	height: 48px;
+	background-color: #fff;
+	width: 140px;
+	border-radius: 25px;
+	color: #8590a6;
 	cursor: pointer;
-	color: rgb(30, 134, 255);
+	font-weight: 600;
 }
-.zh-shadow{
-	box-shadow: 2px 5px 10px rgb(165,214,167);
-	
+
+.zh-shadow {
+	box-shadow: 2px 5px 10px rgb(165, 214, 167);
+
 }

@@ -1,9 +1,14 @@
 <template>
 	<div class="all">
 		<div class="topic-head">
-			<img src="../assets/image/5.png" />
-			<h2 style="margin-top: 5px;">所有专题</h2>
-			<h4>共有489个专题</h4>
+			<svg class="Zi" fill="currentColor" viewBox="0 0 24 24" width="32" height="32">
+				<path
+					d="M7.667 3.667h11.466a1.2 1.2 0 0 1 1.2 1.2v13.066a2.4 2.4 0 0 1-2.4 2.4H6.467V4.867a1.2 1.2 0 0 1 1.2-1.2zM4.2 9.619h1.689v10.714H5.4a2.4 2.4 0 0 1-2.4-2.4V10.82a1.2 1.2 0 0 1 1.2-1.2zm5.178-2.38a.6.6 0 0 0-.6.6v.585a.6.6 0 0 0 .6.6h8.044a.6.6 0 0 0 .6-.6v-.586a.6.6 0 0 0-.6-.6H9.378zm0 3.57a.6.6 0 0 0-.6.6v.586a.6.6 0 0 0 .6.6h8.044a.6.6 0 0 0 .6-.6v-.585a.6.6 0 0 0-.6-.6H9.378zm0 3.572a.6.6 0 0 0-.6.6v.586a.6.6 0 0 0 .6.6h4.578a.6.6 0 0 0 .6-.6v-.586a.6.6 0 0 0-.6-.6H9.378z"
+					fill-rule="evenodd"
+				></path>
+			</svg>
+			<h2 class="zui">全部专题</h2>
+			<h4 class="hh">共有489个专题</h4>
 		</div>
 		<div class="container">
 			<div class="row zh-shadow" v-for="(item, index) in specials" :key="index">
@@ -21,14 +26,11 @@
 			</div>
 		</div>
 
-
 		<div class="sss">
 			<div>
 				<a href="#top"><i class="iconfont shadow" style="font-size: 60px; color: red;">&#xe6ab;</i></a>
 			</div>
 		</div>
-		
-		
 	</div>
 </template>
 
@@ -41,7 +43,7 @@ export default {
 		};
 	},
 	created() {
-		this.axios.get('http://localhost:8080/api/special/all').then(res => {
+		this.axios.get(this.$store.state.baseUrl + '/special/all').then(res => {
 			console.log(res);
 			this.specials = res.data.data;
 		});
@@ -51,13 +53,11 @@ export default {
 
 <style lang="scss" scoped>
 @font-face {
-  font-family: 'iconfont';  /* project id 1434161 */
-  src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot');
-  src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.svg#iconfont') format('svg');
+	font-family: 'iconfont'; /* project id 1434161 */
+	src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot');
+	src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff2') format('woff2'),
+		url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff') format('woff'), url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.ttf') format('truetype'),
+		url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.svg#iconfont') format('svg');
 }
 .iconfont {
 	font-family: 'iconfont' !important;
@@ -67,7 +67,7 @@ export default {
 	-webkit-text-stroke-width: 0.2px;
 	-moz-osx-font-smoothing: grayscale;
 }
-.all{
+.all {
 	background-color: rgb(246, 246, 246);
 }
 .sss {
@@ -78,14 +78,28 @@ export default {
 	bottom: 40px;
 }
 .topic-head {
+	position: relative;
 	display: flex;
 	background-color: rgb(246, 246, 246);
 	margin-top: -10px;
 	height: 80px;
 	padding-left: 20px;
 	padding-top: 28px;
+	.Zi {
+		position: absolute;
+		color: #0084ff;
+		left: 20px;
+	}
+	.zui{
+		position: absolute;
+		left: 60px;
+	}
+	.hh{
+		position: absolute;
+		left: 160px;
+	}
 }
-.p{
+.p {
 	width: 60px;
 }
 .topic-head h4 {

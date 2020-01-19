@@ -1,9 +1,13 @@
 <template>
 	<div class="all">
 		<div class="head">
-			<img src="" alt="" />
-			<i class="iconfont">&#xe65d;</i>
-			<h2>最新专题</h2>
+			<svg class="Zi " fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+				<path
+					d="M7.667 3.667h11.466a1.2 1.2 0 0 1 1.2 1.2v13.066a2.4 2.4 0 0 1-2.4 2.4H6.467V4.867a1.2 1.2 0 0 1 1.2-1.2zM4.2 9.619h1.689v10.714H5.4a2.4 2.4 0 0 1-2.4-2.4V10.82a1.2 1.2 0 0 1 1.2-1.2zm5.178-2.38a.6.6 0 0 0-.6.6v.585a.6.6 0 0 0 .6.6h8.044a.6.6 0 0 0 .6-.6v-.586a.6.6 0 0 0-.6-.6H9.378zm0 3.57a.6.6 0 0 0-.6.6v.586a.6.6 0 0 0 .6.6h8.044a.6.6 0 0 0 .6-.6v-.585a.6.6 0 0 0-.6-.6H9.378zm0 3.572a.6.6 0 0 0-.6.6v.586a.6.6 0 0 0 .6.6h4.578a.6.6 0 0 0 .6-.6v-.586a.6.6 0 0 0-.6-.6H9.378z"
+					fill-rule="evenodd"
+				></path>
+			</svg>
+			<h2 class="zui">最新专题</h2>
 		</div>
 		<div class="row">
 			<div class="explore" v-for="(item, index) in specials" :key="index">
@@ -18,7 +22,7 @@
 					</div>
 				</div>
 
-				<p class="introduction">{{item.introduction}}</p>
+				<p class="introduction">{{ item.introduction }}</p>
 
 				<span v-for="(section, index) in item.sections" :key="index" class="section">{{ section.sectionTitle }}</span>
 			</div>
@@ -28,10 +32,15 @@
 		</div>
 
 		<div class="head">
-			<img src="../assets/image/6.png" />
-			<h2>圆桌讨论</h2>
+			<svg class="Zi" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+				<path
+					d="M12 21.333a9.333 9.333 0 1 1 0-18.666 9.333 9.333 0 0 1 0 18.666zm-.66-11.287c.332.385.609.77.775 1.21.055-.054.665-.99.72-1.706.055-.385.126-1.616-.443-2.367-.443-.496-1.219-.77-1.884-.55a1.788 1.788 0 0 0-1.33 2.036c.887.276 1.607.771 2.161 1.377zm-1.33 1.541c.443-.055.941-.11 1.44 0 0-.055-.484-.936-1.108-1.486-.665-.496-1.33-.973-2.216-.771-.72.11-1.723.77-1.55 2.092.11.606.553 1.101 1.162 1.321.61-.605 1.44-1.046 2.272-1.156zm2.714.165c.056 0 1.164.055 1.828-.165.72-.275 1.412-.68 1.773-1.541.11-.276.23-1.248-.443-1.872-.72-.716-1.717-.716-2.438-.165.222.825.063 1.966-.11 2.532-.103.348-.333.88-.61 1.211zm-1.44.55c-.056 0-1.33.056-1.828.221-.72.275-1.447.668-1.773 1.541-.11.276-.21 1.26.443 1.872.665.661 1.718.661 2.438.11-.295-.811-.166-1.761.055-2.477.166-.495.388-.936.665-1.266zm5.041-.99c-.665.605-1.44.99-2.327 1.211-.443.055-.941.11-1.44 0 0 .055.554.991 1.108 1.431.665.496 1.385.771 2.216.771.72-.11 1.678-.692 1.551-2.092-.055-.605-.554-1.101-1.108-1.321zm-3.656 2.642a3.475 3.475 0 0 1-.776-1.156c-.055.055-.665.991-.72 1.707-.055.385-.101 1.506.499 2.312.443.496 1.218.77 1.883.55.887-.275 1.496-1.1 1.33-2.036a5.38 5.38 0 0 1-2.216-1.377z"
+					fill-rule="evenodd"
+				></path>
+			</svg>
+			<h2 class="zui">圆桌讨论</h2>
 		</div>
-		<div class="row ">
+		<div class="row">
 			<div class="exploree" v-for="(item, index) in roundTables" :key="index">
 				<img :src="item.banner" />
 				<h3 class="name">{{ item.name }}</h3>
@@ -39,14 +48,62 @@
 				<h5 class="liu">{{ item.includeCount }}位嘉宾参与 | {{ item.visitsCount }}次浏览</h5>
 				<div class="row">
 					<div class="left">
-						<p >{{item.urlToken}}</p>
+						<p>{{ item.urlToken }}</p>
 					</div>
-					
 				</div>
 			</div>
 		</div>
 		<div class="k">
 			<router-link to="roundtable"><button class="btn-circle">查看更多圆桌></button></router-link>
+		</div>
+
+		<div class="head">
+			<svg class="Zi Zi--Star" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+				<path
+					d="M5.515 19.64l.918-5.355-3.89-3.792c-.926-.902-.639-1.784.64-1.97L8.56 7.74l2.404-4.871c.572-1.16 1.5-1.16 2.072 0L15.44 7.74l5.377.782c1.28.186 1.566 1.068.64 1.97l-3.89 3.793.918 5.354c.219 1.274-.532 1.82-1.676 1.218L12 18.33l-4.808 2.528c-1.145.602-1.896.056-1.677-1.218z"
+					fill-rule="evenodd"
+				></path>
+			</svg>
+			<h2 class="zui">热门收藏夹</h2>
+		</div>
+
+		<div class="row">
+			<div class="explo" v-for="(item, index) in favorites" :key="index">
+				<div class="top">
+					<p class="biao">{{ item.title }}</p>
+					<button class="bu"><h4>关注收藏夹</h4></button>
+					<img :src="item.creatorAvatar" />
+					<p class="mizi">{{ item.creatorName }}</p>
+					<p class="guanzhu">创建 | {{ item.followers }}人关注</p>
+				</div>
+				<div class="middle">
+					<p class="ti">{{item.questionTitle}}</p>
+					<p>{{item.answerAuthorName}}</p>
+					<p>{{item.answerContent}}</p>
+				</div>
+				<div class="bottom">
+					<h4>已收藏{{ item.totalCount }}条内容 ></h4>
+				</div>
+			</div>
+		</div>
+		<div class="k">
+			<router-link to="collection/hot"><button class="btn-circle">查看更多收藏夹></button></router-link>
+		</div>
+
+		<div class="head">
+			<svg class="Zi" fill="currentColor" viewBox="0 0 24 24" width="36" height="36">
+				<path
+					d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm4.043-15.524a.745.745 0 0 0-1.053.017l-6.857 7.071 2.237 2.17 6.857-7.071a.743.743 0 0 0-.016-1.052l-1.168-1.135zm-9.028 9.476l-.348 1.381 1.37-.39 1.274-.36-1.973-1.916-.323 1.285z"
+					fill-rule="evenodd"
+				></path>
+			</svg>
+			<h2 class="zui">专栏</h2>
+		</div>
+		<div class="row">
+			<div class="lan" v-for="(item, index) in columnss" :key="index"><img :src="item.imageUrl" /></div>
+		</div>
+		<div class="k">
+			<router-link to="/lan"><button class="btn-circle">查看更多专栏></button></router-link>
 		</div>
 	</div>
 </template>
@@ -57,17 +114,30 @@ export default {
 	data() {
 		return {
 			specials: [],
-			roundTables: []
+			roundTables: [],
+			favorites: [],
+			columnss: [],
+			answerContent: null
 		};
 	},
 	created() {
-		this.axios.get('http://localhost:8080/api/special').then(res => {
+		this.axios.get(this.$store.state.baseUrl + '/special').then(res => {
 			console.log(res);
 			this.specials = res.data.data;
 		});
-		this.axios.get('http://localhost:8080/api/roundTable').then(res => {
+		this.axios.get(this.$store.state.baseUrl + '/roundTable').then(res => {
 			console.log(res);
 			this.roundTables = res.data.data;
+		});
+		this.axios.get(this.$store.state.baseUrl + '/favorite').then(res => {
+			console.log(res);
+			this.favorites = res.data.data;
+			
+			
+		});
+		this.axios.get(this.$store.state.baseUrl + '/columns').then(res => {
+			console.log(res);
+			this.columnss = res.data.data;
 		});
 	}
 };
@@ -77,23 +147,7 @@ export default {
 .all {
 	background-color: rgb(246, 246, 246);
 }
-@font-face {
-	font-family: 'iconfont'; /* project id 1616266 */
-	src: url('//at.alicdn.com/t/font_1616266_b8gknsgz736.eot');
-	src: url('//at.alicdn.com/t/font_1616266_b8gknsgz736.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_1616266_b8gknsgz736.woff2') format('woff2'),
-		url('//at.alicdn.com/t/font_1616266_b8gknsgz736.woff') format('woff'), url('//at.alicdn.com/t/font_1616266_b8gknsgz736.ttf') format('truetype'),
-		url('//at.alicdn.com/t/font_1616266_b8gknsgz736.svg#iconfont') format('svg');
-}
-.iconfont {
-	font-family: 'iconfont' !important;
-	font-size: 30px;
-	font-style: normal;
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-stroke-width: 0.2px;
-	-moz-osx-font-smoothing: grayscale;
-	color: blue;
-	margin: 10px;
-}
+
 .row {
 	display: flex;
 	flex-wrap: wrap;
@@ -106,8 +160,20 @@ export default {
 	background-color: #f6f6f6;
 }
 .head {
+	position: relative;
 	display: flex;
 	align-items: center;
+	margin-top: 40px;
+	margin-bottom: 22px;
+	.Zi {
+		position: absolute;
+		color: #0084ff;
+		left: 20px;
+	}
+	.zui {
+		position: absolute;
+		left: 70px;
+	}
 }
 .explore {
 	box-shadow: 2px 5px 5px #aaa;
@@ -115,6 +181,9 @@ export default {
 	margin: 1%;
 	height: 430px;
 	background-color: rgb(255, 255, 255);
+	img {
+		height: 200px;
+	}
 }
 .explore img {
 	border-radius: 5px;
@@ -128,7 +197,82 @@ export default {
 	height: 430px;
 	background-color: rgb(255, 255, 255);
 }
-.butt{
+.explo {
+	position: relative;
+	box-shadow: 2px 5px 5px #aaa;
+	width: 46%;
+	margin: 1%;
+	height: 430px;
+	background-color: rgb(255, 255, 255);
+	.top {
+		position: relative;
+		height: 30%;
+		img {
+			position: absolute;
+			top: 65px;
+			left: 20px;
+		}
+		.biao {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			display: block;
+			height: 28px;
+			line-height: 28px;
+			font-size: 20px;
+			font-weight: 600;
+		}
+		.bu {
+			position: absolute;
+			top: 20px;
+			right: 30px;
+			border: none;
+			color: #0084ff;
+			background-color: rgba(0, 132, 255, 0.08);
+			height: 40px;
+			border-radius: 5px;
+			font-size: 14px;
+			font-weight: 600;
+		}
+		.guanzhu {
+			position: absolute;
+			top: 75px;
+			left: 120px;
+			font-size: 14px;
+			color: #999;
+		}
+		.mizi {
+			position: absolute;
+			top: 75px;
+			left: 63px;
+			color: #444;
+			font-weight: 500;
+		}
+	}
+	.middle {
+		height: 50%;
+		
+		.ti{
+			font-weight: 600;
+			line-height: 21px;
+		}
+	}
+	.bottom {
+		height: 20%;
+		font-size: 14px;
+		color: #8590a6;
+	}
+}
+.lan {
+	box-shadow: 2px 5px 5px #aaa;
+	width: 20%;
+	margin: 2%;
+	img {
+		width: 100%;
+		height: 100%;
+	}
+}
+.butt {
 	position: absolute;
 	border: none;
 	background-color: rgb(245, 245, 245);
@@ -139,7 +283,7 @@ export default {
 	left: 80%;
 	border-radius: 5px;
 }
-.liu{
+.liu {
 	position: absolute;
 	bottom: 55%;
 	left: 8%;
@@ -148,7 +292,6 @@ export default {
 	position: absolute;
 	bottom: 70%;
 	left: 5%;
-	
 }
 .exploree img {
 	border-radius: 5px;
@@ -166,7 +309,7 @@ export default {
 .right {
 	height: 100px;
 	width: 20%;
-	padding-top:20px;
+	padding-top: 20px;
 }
 .button {
 	width: 90%;
@@ -181,7 +324,7 @@ export default {
 	align-items: center;
 	margin-left: 520px;
 }
-.introduction{
+.introduction {
 	margin-left: 30px;
 }
 </style>

@@ -3,7 +3,8 @@
 		<div class="left">
 			<div class="row">
 				<div class="explore zh-shadow " v-for="(item, index) in roundTables" :key="index">
-					<div class="top">
+					<div class="top ">
+						<div class="sh"></div>
 						<img :src="item.banner" alt="" />
 						<p class="name">{{ item.name }}</p>
 					</div>
@@ -31,7 +32,7 @@ export default {
 		};
 	},
 	created() {
-		this.axios.get('http://localhost:8080/api/roundTable/all').then(res => {
+		this.axios.get(this.$store.state.baseUrl+'/roundTable/all').then(res => {
 			console.log(res);
 			this.roundTables = res.data.data;
 		});
@@ -40,6 +41,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sh {
+	position: absolute;
+	z-index: 1;
+	border-radius: 10px;
+	height: 100%;
+	width: 100%;
+	// 渐变
+	background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(66, 66, 66));
+}
 .sss {
 	width: 50px;
 	height: 50px;
@@ -92,6 +102,7 @@ export default {
 	img {
 		width: 100%;
 		height: 100%;
+		z-index: -1;
 	}
 }
 .name {
@@ -99,5 +110,6 @@ export default {
 	bottom: 5%;
 	left: 5%;
 	color: white;
+	z-index: 2;
 }
 </style>

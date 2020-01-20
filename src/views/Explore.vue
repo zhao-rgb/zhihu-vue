@@ -75,14 +75,16 @@
 					<img :src="item.creatorAvatar" />
 					<p class="mizi">{{ item.creatorName }}</p>
 					<p class="guanzhu">创建 | {{ item.followers }}人关注</p>
+					
 				</div>
 				<div class="middle">
 					<p class="ti">{{item.questionTitle}}</p>
-					<p>{{item.answerAuthorName}}</p>
-					<p>{{item.answerContent}}</p>
+					<p class="co">{{item.answerAuthorName}}: {{item.answerContent}}</p>			
+					<span class="hui">回答</span>
+					<span class="zan">{{item.voteupCount}}赞同 {{item.commentCount}}评论</span>
 				</div>
 				<div class="bottom">
-					<h4>已收藏{{ item.totalCount }}条内容 ></h4>
+					<h4 class="ne">已收藏{{ item.totalCount }}条内容 ></h4>
 				</div>
 			</div>
 		</div>
@@ -206,7 +208,7 @@ export default {
 	background-color: rgb(255, 255, 255);
 	.top {
 		position: relative;
-		height: 30%;
+		height: 30%;		
 		img {
 			position: absolute;
 			top: 65px;
@@ -250,17 +252,52 @@ export default {
 		}
 	}
 	.middle {
-		height: 50%;
-		
+		position: relative;
+		height: 50%;	
+		border-top: 1px solid #ebebeb;
+		width: 90%;		
+		left: 20px;
 		.ti{
+			position: absolute;
 			font-weight: 600;
 			line-height: 21px;
+			top: 20px;
+		}
+		.co{
+			position: absolute;
+			top: 55px;
+			height: 21px;
+			line-height: 21px;
+			color: #444;
+		}
+		.hui{
+			position: absolute;
+			top: 180px;
+			left: 5px;
+			background-color: #f6f6f6;
+			color: #999;
+			font-size: 12px;
+		}
+		.zan{
+			position: absolute;
+			top: 180px;
+			left: 45px;
+			height: 17px;
+			line-height: 17px;
+			font-size: 12px;
+			color: #999;
 		}
 	}
 	.bottom {
+		position: relative;
 		height: 20%;
 		font-size: 14px;
-		color: #8590a6;
+		color: #8590a6;		
+		.ne{
+			position: absolute;
+			left: 22px;
+			top: 20px;
+		}
 	}
 }
 .lan {

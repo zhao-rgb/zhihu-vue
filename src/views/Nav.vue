@@ -15,8 +15,37 @@
 					<li class="nav-item"><router-link to="/home">首页</router-link></li>
 					<li class="nav-item"><router-link to="/explore">发现</router-link></li>
 					<li class="nav-item"><router-link to="/question/waiting">等你来答</router-link></li>
-					<li class="nav-item "><router-link to="/login">登录</router-link></li>
-					<img width="30" height="30" :src="user.avatar" v-if="token" />
+					<div class="Popover">
+						<label class="SearchBar-input Input-wrapper Input-wrapper--grey">
+							<input type="text" maxlength="100" class="Input" placeholder="雷霆末节逆转对手" value="" />
+							<!-- <button aria-label="搜索" type="button" class="Button"> -->
+								<span style="display: inline-flex; align-items: center;">
+									​
+									<svg class="Zi--Search" fill="currentColor" viewBox="0 0 24 24" width="18" height="18">
+										<path
+											d="M17.068 15.58a8.377 8.377 0 0 0 1.774-5.159 8.421 8.421 0 1 0-8.42 8.421 8.38 8.38 0 0 0 5.158-1.774l3.879 3.88c.957.573 2.131-.464 1.488-1.49l-3.879-3.878zm-6.647 1.157a6.323 6.323 0 0 1-6.316-6.316 6.323 6.323 0 0 1 6.316-6.316 6.323 6.323 0 0 1 6.316 6.316 6.323 6.323 0 0 1-6.316 6.316z"
+											fill-rule="evenodd"
+										></path>
+									</svg>
+								</span>
+							</button>
+						</label>
+					</div>
+					<svg class="Zi--Bell" fill="currentColor" viewBox="0 0 24 24" width="22" height="22">
+						<path
+							d="M4.523 15.076l.804-6.757a6.753 6.753 0 0 1 4.945-5.7 1.823 1.823 0 0 1 3.623 0 6.753 6.753 0 0 1 4.945 5.7l.804 6.757a2.293 2.293 0 0 0 1.712 2.108 1.093 1.093 0 0 1-.297 2.15H3.108a1.093 1.093 0 0 1-.297-2.15 2.293 2.293 0 0 0 1.712-2.108zM12.083 23a2.758 2.758 0 0 1-2.753-2.509.229.229 0 0 1 .232-.24h5.043a.229.229 0 0 1 .232.24 2.759 2.759 0 0 1-2.753 2.51z"
+						></path>
+					</svg>
+					<svg class="Zi--Comments" fill="currentColor" viewBox="0 0 24 24" width="22" height="22">
+						<path
+							d="M11 2c5.571 0 9 4.335 9 8 0 6-6.475 9.764-11.481 8.022-.315-.07-.379-.124-.78.078-1.455.54-2.413.921-3.525 1.122-.483.087-.916-.25-.588-.581 0 0 .677-.417.842-1.904.064-.351-.14-.879-.454-1.171A8.833 8.833 0 0 1 2 10c0-3.87 3.394-8 9-8zm10.14 9.628c.758.988.86 2.009.86 3.15 0 1.195-.619 3.11-1.368 3.938-.209.23-.354.467-.308.722.12 1.073.614 1.501.614 1.501.237.239-.188.562-.537.5-.803-.146-1.495-.42-2.546-.811-.29-.146-.336-.106-.563-.057-2.043.711-4.398.475-6.083-.927 5.965-.524 8.727-3.03 9.93-8.016z"
+							fill-rule="evenodd"
+						></path>
+					</svg>
+
+					<button type="button" class="Button--blue">提问</button>
+					<!-- <li class="nav-item "><router-link to="/login">登录</router-link></li> -->
+					<img class="im" :src="user.avatar" v-if="token" />
 					<span v-else>登录</span>
 				</ul>
 			</div>
@@ -45,7 +74,7 @@ export default {
 	fill: #0084ff;
 }
 .img {
-	margin-left: 30px;
+	margin-left: 48px;
 	margin-right: 40px;
 	margin-top: 14px;
 }
@@ -56,12 +85,83 @@ export default {
 }
 .gutter {
 	position: relative;
-	margin-right: 30px;
+	.Popover {
+		position: absolute;
+		left: 370px;
+		top: 12px;
+		font-size: 15px;
+		color: #1a1a1a;
+		width: 326px;
+		height: 34px;
+		display: block;
+		background: #f6f6f6;		
+		.Input {
+			position: absolute;
+			top: 5px;
+			left: 10px;
+			color: #8590a6;
+			background: #f6f6f6;
+			height: 24px;
+			line-height: 24px;
+			font-size: inherit;
+			font-weight: inherit;
+			border: none;
+		}
+	}
 }
-
+.Button--blue {
+	position: absolute;
+	left: 710px;
+	top: 12px;
+	height: 36px;
+	width: 58px;
+	color: #fff;
+	background-color: #0084ff;
+	font-size: 14px;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid;
+	border-radius: 3px;
+}
 .nav-item {
 	margin-right: 40px;
 	margin-top: 15px;
 	color: #8590a6;
 }
+.Zi--Bell {
+	position: absolute;
+	right: 190px;
+	top: 18px;
+	width: 22;
+	height: 22;
+	font-size: 14px;
+	color: #8590a6;
+	text-align: center;
+	cursor: pointer;
+}
+.Zi--Comments{
+	position: absolute;
+	right: 130px;
+	top: 18px;
+	width: 22;
+	height: 22;
+	font-size: 14px;
+	color: #8590a6;
+	text-align: center;
+	cursor: pointer;
+}
+.im{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 55px;
+	top: 14px;
+}
+.Zi--Search{
+	position: absolute;
+	left: 290px;
+	top: 10px;
+	color: #8590a6;
+}
+
 </style>

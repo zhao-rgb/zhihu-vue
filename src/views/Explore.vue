@@ -75,13 +75,12 @@
 					<img :src="item.creatorAvatar" />
 					<p class="mizi">{{ item.creatorName }}</p>
 					<p class="guanzhu">创建 | {{ item.followers }}人关注</p>
-					
 				</div>
 				<div class="middle">
-					<p class="ti">{{item.questionTitle}}</p>
-					<p class="co">{{item.answerAuthorName}}: {{item.answerContent}}</p>			
+					<p class="ti">{{ item.questionTitle }}</p>
+					<p class="co">{{ item.answerAuthorName }}: {{ item.answerContent }}</p>
 					<span class="hui">回答</span>
-					<span class="zan">{{item.voteupCount}}赞同 {{item.commentCount}}评论</span>
+					<span class="zan">{{ item.voteupCount }}赞同 {{ item.commentCount }}评论</span>
 				</div>
 				<div class="bottom">
 					<h4 class="ne">已收藏{{ item.totalCount }}条内容 ></h4>
@@ -102,7 +101,13 @@
 			<h2 class="zui">专栏</h2>
 		</div>
 		<div class="row">
-			<div class="lan" v-for="(item, index) in columnss" :key="index"><img :src="item.imageUrl" /></div>
+			<div class="lan" v-for="(item, index) in columnss" :key="index">
+				<img :src="item.imageUrl" />
+				<span class="he">{{ item.title }}</span>
+				<p class="zhu">{{ item.followers }}关注 {{ item.articlesCount }}文章</p>
+				<span class="des">{{ item.description.slice(0, 10) }}</span>				
+				<div><a :href="item.url" class="buttomm" @click="go(item.url)"><h4 class="jin">进入专栏</h4></a></div>
+			</div>
 		</div>
 		<div class="k">
 			<router-link to="/lan"><button class="btn-circle">查看更多专栏></button></router-link>
@@ -134,13 +139,16 @@ export default {
 		this.axios.get(this.$store.state.baseUrl + '/favorite').then(res => {
 			console.log(res);
 			this.favorites = res.data.data;
-			
-			
 		});
 		this.axios.get(this.$store.state.baseUrl + '/columns').then(res => {
 			console.log(res);
 			this.columnss = res.data.data;
 		});
+	},
+	methods:{
+		go(page) {
+					window.location.href = page;
+				}
 	}
 };
 </script>
@@ -157,7 +165,7 @@ export default {
 .container {
 	display: block;
 	margin: auto;
-	width: 80%;
+	width: 75%;
 	margin-top: 15px;
 	background-color: #f6f6f6;
 }
@@ -179,7 +187,7 @@ export default {
 }
 .explore {
 	box-shadow: 2px 5px 5px #aaa;
-	width: 46%;
+	width: 41%;
 	margin: 1%;
 	height: 430px;
 	background-color: rgb(255, 255, 255);
@@ -194,7 +202,7 @@ export default {
 .exploree {
 	position: relative;
 	box-shadow: 2px 5px 5px #aaa;
-	width: 46%;
+	width: 41%;
 	margin: 1%;
 	height: 430px;
 	background-color: rgb(255, 255, 255);
@@ -202,13 +210,13 @@ export default {
 .explo {
 	position: relative;
 	box-shadow: 2px 5px 5px #aaa;
-	width: 46%;
+	width: 41%;
 	margin: 1%;
 	height: 430px;
 	background-color: rgb(255, 255, 255);
 	.top {
 		position: relative;
-		height: 30%;		
+		height: 30%;
 		img {
 			position: absolute;
 			top: 65px;
@@ -253,24 +261,24 @@ export default {
 	}
 	.middle {
 		position: relative;
-		height: 50%;	
+		height: 50%;
 		border-top: 1px solid #ebebeb;
-		width: 90%;		
+		width: 90%;
 		left: 20px;
-		.ti{
+		.ti {
 			position: absolute;
 			font-weight: 600;
 			line-height: 21px;
 			top: 20px;
 		}
-		.co{
+		.co {
 			position: absolute;
 			top: 55px;
 			height: 21px;
 			line-height: 21px;
 			color: #444;
 		}
-		.hui{
+		.hui {
 			position: absolute;
 			top: 180px;
 			left: 5px;
@@ -278,7 +286,7 @@ export default {
 			color: #999;
 			font-size: 12px;
 		}
-		.zan{
+		.zan {
 			position: absolute;
 			top: 180px;
 			left: 45px;
@@ -292,23 +300,15 @@ export default {
 		position: relative;
 		height: 20%;
 		font-size: 14px;
-		color: #8590a6;		
-		.ne{
+		color: #8590a6;
+		.ne {
 			position: absolute;
 			left: 22px;
 			top: 20px;
 		}
 	}
 }
-.lan {
-	box-shadow: 2px 5px 5px #aaa;
-	width: 20%;
-	margin: 2%;
-	img {
-		width: 100%;
-		height: 100%;
-	}
-}
+
 .butt {
 	position: absolute;
 	border: none;
@@ -359,9 +359,71 @@ export default {
 .k {
 	display: flex;
 	align-items: center;
-	margin-left: 520px;
+	margin-left: 450px;
 }
 .introduction {
 	margin-left: 30px;
+}
+.lan {
+	position: relative;
+	box-shadow: 2px 5px 5px #aaa;
+	width: 235px;
+	height: 313px;
+	margin: 12px;
+	background-color: white;
+	img {
+		position: absolute;
+		top: 25px;
+		left: 70px;
+		width: 80px;
+		height: 80px;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+	.he {
+		position: absolute;
+		top: 120px;
+		left: 85px;
+		line-height: 22px;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.zhu {
+		position: absolute;
+		top: 150px;
+		left: 60px;
+		height: 17px;
+		line-height: 17px;
+		font-size: 12px;
+		color: #999;
+	}
+	.des {
+		position: absolute;
+		top: 190px;
+		left: 50px;
+		height: 40px;
+		line-height: 20px;
+		font-size: 14px;
+		color: #444;
+		text-align: center;
+	}
+	.buttomm{
+		position: absolute;
+		top: 250px;
+		left: 70px;
+		border: none;
+		color: #0084ff;
+		background-color: rgba(0, 132, 255, 0.08);
+		height: 34px;
+		width: 88px;
+		border-radius: 5px;
+		font-size: 14px;
+		font-weight: 600;
+		.jin{
+			position: absolute;
+			top: 5px;
+			left: 15px;
+		}
+	}
 }
 </style>

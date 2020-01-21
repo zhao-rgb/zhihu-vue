@@ -47,14 +47,63 @@ export default {
 	name: 'favorite',
 	data() {
 		return {
-			favorites: []
+			favorites: [],
+			currentPage: 1,
+			count: 9,
+			scroll: ''
 		};
 	},
 	created() {
-		this.axios.get(this.$store.state.baseUrl + '/favorite/all').then(res => {
-			console.log(res);
+		this.axios({
+			method: 'post',
+			url: 'http://localhost:8080/api/favorite/page',
+			params: {
+				count: this.count,
+				currentPage: this.currentPage
+			}
+		}).then(res => {
+			console.log(res.data.data);
 			this.favorites = res.data.data;
+			console.log(this.favorites.length);
 		});
+	},
+	methods: {
+		loadMore() {
+			this.currentPage = this.currentPage + 1;
+			this.axios({
+				method: 'post',
+				url: 'http://localhost:8080/api/favorite/page',
+				params: {
+					count: this.count,
+					currentPage: this.currentPage
+				}
+			}).then(res => {
+				console.log(res.data.data);
+				let temp = [];
+				temp = res.data.data;
+				for (var i = 0; i < temp.length; i++) {
+					this.favorites.splice(this.currentPage * this.count, 0, temp[i]);
+				}
+				console.log(this.favorites.length);
+			});
+		},
+		scrollDs() {
+			//变量scrollTop是滚动条滚动时，距离顶部的距离
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			//变量windowHeight是可视区的高度
+			var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+			//变量scrollHeight是滚动条的总高度
+			var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+			//滚动条到底部的条件
+			if (scrollTop + windowHeight > scrollHeight -100) {
+				//到了这个就可以进行业务逻辑加载后台数据了
+				console.log('到了底部');
+				this.loadMore();
+			}
+		}
+	},
+	mounted() {
+		window.addEventListener('scroll', this.scrollDs,true);
 	}
 };
 </script>

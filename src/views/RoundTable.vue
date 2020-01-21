@@ -1,20 +1,23 @@
 <template>
 	<div class="all">
-		<div class="left">
-			<div class="row">
-				<div class="explore zh-shadow " v-for="(item, index) in roundTables" :key="index">
-					<div class="top ">
-						<div class="sh"></div>
-						<img :src="item.banner" alt="" />
-						<p class="name">{{ item.name }}</p>
-					</div>
-					<div class="bo">
-						<h5 style="color: #778087;">该圆桌被浏览{{ item.visitsCount }}次</h5>
-					</div>
+		<div class="topp">
+			<span class="yuan">圆桌</span>
+			<span class="ban">举办圆桌</span>
+		</div>
+
+		<div class="row">
+			<div class="explore zh-shadow " v-for="(item, index) in roundTables" :key="index">
+				<div class="top ">
+					<div class="sh"></div>
+					<img :src="item.banner" alt="" />
+					<p class="name">{{ item.name }}</p>
+				</div>
+				<div class="bo">
+					<h5 style="color: #778087;">该圆桌被浏览{{ item.visitsCount }}次</h5>
 				</div>
 			</div>
 		</div>
-		<div class="right"><h3>hhh</h3></div>
+
 		<div class="sss">
 			<div>
 				<a href="#top"><i class="iconfont shadow" style="font-size: 60px; color: red;">&#xe6ab;</i></a>
@@ -28,14 +31,58 @@ export default {
 	name: 'roundTable',
 	data() {
 		return {
-			roundTables: []
+			roundTables: [],
+			currentPage: 1,
+			count: 36,
+			scroll: ''
 		};
 	},
 	created() {
-		this.axios.get(this.$store.state.baseUrl+'/roundTable/all').then(res => {
-			console.log(res);
+		this.axios({
+			method: 'post',
+			url: 'http://localhost:8080/api/roundTable/page',
+			params: {
+				count: this.count,
+				currentPage: this.currentPage
+			}
+		}).then(res => {
+			console.log(res.data.data);
 			this.roundTables = res.data.data;
+			console.log(this.roundTables.length);
 		});
+	},
+	methods: {
+		loadMore() {
+			this.currentPage = this.currentPage + 1;
+			this.axios({
+				method: 'post',
+				url: 'http://localhost:8080/api/roundTable/page',
+				params: {
+					count: this.count,
+					currentPage: this.currentPage
+				}
+			}).then(res => {
+				console.log(res.data.data);
+				let temp = [];
+				temp = res.data.data;
+				for (var i = 0; i < temp.length; i++) {
+					this.roundTables.splice(this.currentPage * this.count, 0, temp[i]);
+				}
+				console.log(this.roundTables.length);
+			});
+		},
+		scrollDs() {
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+			var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+			if (scrollTop + windowHeight > scrollHeight - 100) {
+				console.log('到了底部');
+				this.loadMore();
+			}
+		}
+	},
+	mounted() {
+		window.addEventListener('scroll', this.scrollDs);
 	}
 };
 </script>
@@ -75,25 +122,48 @@ export default {
 .all {
 	background-color: rgb(245, 245, 245);
 }
-.left {
-	float: left;
-	width: 800px;
-}
-.right {
-	background-color: blue;
-	margin-left: 850px;
-	width: 20%;
-	height: 5000px;
+
+.topp {
+	position: relative;
+	left: 25px;
+	height: 60px;
+	background-color: rgb(255,255,255);
+	width: 82%;
+	border-bottom: 1px solid #ebebeb;
+	.yuan {
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		margin: 0;
+		min-width: 0;
+		font-weight: 600;
+		color: #1a1a1a;
+		font-size: 15px;
+		line-height: 20px;
+	}
+	.ban {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		color: #0084ff;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 20px;
+	}
 }
 .row {
+	position: relative;
+	left: 25px;
 	display: flex;
 	flex-wrap: wrap;
+	width: 82%;
+	background-color: rgb(255,255,255);
 }
 .explore {
 	box-shadow: 2px 5px 5px #aaa;
-	width: 30%;
-	margin: 1%;
+	margin: 21px;
 	height: 200px;
+	width: 200px;
 	background-color: rgb(255, 255, 255);
 }
 .top {

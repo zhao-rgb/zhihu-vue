@@ -118,6 +118,7 @@ export default {
 	background-color: rgb(255, 255, 255);
 	display: flex;
 	height: 250px;
+	width: 1000px;
 	margin: 15px;
 	border-radius: 10px;
 	/* margin-top: -50px; */

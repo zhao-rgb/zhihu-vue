@@ -105,13 +105,29 @@
 				<img :src="item.imageUrl" />
 				<span class="he">{{ item.title }}</span>
 				<p class="zhu">{{ item.followers }}关注 {{ item.articlesCount }}文章</p>
-				<span class="des">{{ item.description.slice(0, 10) }}</span>				
-				<div><a :href="item.url" class="buttomm" @click="go(item.url)"><h4 class="jin">进入专栏</h4></a></div>
+				<span class="des">{{ item.description.slice(0, 10) }}</span>
+				<div>
+					<a :href="item.url" class="buttomm" @click="go(item.url)"><h4 class="jin">进入专栏</h4></a>
+				</div>
 			</div>
 		</div>
 		<div class="k">
 			<router-link to="/lan"><button class="btn-circle">查看更多专栏></button></router-link>
 		</div>
+
+
+          <div class="footer">
+			  <footer class="ExploreHomePage-footer">
+			  	<a href="https://liukanshan.zhihu.com" target="_blank" rel="noopener noreferrer">刘看山</a>
+			  	<a href="https://www.zhihu.com/question/19581624" target="_blank" rel="noopener noreferrer">知乎指南</a>
+			  	<a href="https://www.zhihu.com/terms" target="_blank" rel="noopener noreferrer">知乎协议</a>
+			  	<a href="https://www.zhihu.com/app" target="_blank" rel="noopener noreferrer">应用</a>
+			  	<a href="https://app.mokahr.com/apply/zhihu/3819" target="_blank" rel="noopener noreferrer">工作</a>
+			  	<a href="https://www.zhihu.com/contact" target="_blank" rel="noopener noreferrer">联系我们</a>
+			  	<span>© 2020 知乎</span>
+			  </footer>
+		  </div>
+		
 	</div>
 </template>
 
@@ -145,10 +161,10 @@ export default {
 			this.columnss = res.data.data;
 		});
 	},
-	methods:{
+	methods: {
 		go(page) {
-					window.location.href = page;
-				}
+			window.location.href = page;
+		}
 	}
 };
 </script>
@@ -407,7 +423,7 @@ export default {
 		color: #444;
 		text-align: center;
 	}
-	.buttomm{
+	.buttomm {
 		position: absolute;
 		top: 250px;
 		left: 70px;
@@ -419,11 +435,29 @@ export default {
 		border-radius: 5px;
 		font-size: 14px;
 		font-weight: 600;
-		.jin{
+		.jin {
 			position: absolute;
 			top: 5px;
 			left: 15px;
 		}
 	}
+}
+.footer{
+	position: relative;
+	height: 195px;
+	.ExploreHomePage-footer {
+		position: absolute;
+		left: 360px;
+		margin-top: 64px;		
+		align-items: center;
+		height: 24px;
+		font-size: 13px;
+		color: #8590a6;
+	}
+}
+
+a {
+	color: #8590a6;
+	margin: 5px;
 }
 </style>

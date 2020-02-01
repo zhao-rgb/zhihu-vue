@@ -18,11 +18,13 @@
 			</div>
 		</div>
 
-		<div class="sss">
-			<div>
-				<a href="#top"><i class="iconfont shadow" style="font-size: 60px; color: red;">&#xe6ab;</i></a>
-			</div>
-		</div>
+		<button class="goto-top" @click="backToTop" v-show="btnFlag">
+			<svg class="grey-icon" title="回到顶部" viewBox="0 0 24 24" width="24" height="24">
+				<path
+					d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"
+				></path>
+			</svg>
+		</button>
 	</div>
 </template>
 
@@ -34,7 +36,8 @@ export default {
 			roundTables: [],
 			currentPage: 1,
 			count: 36,
-			scroll: ''
+			scroll: '',
+			btnFlag: false
 		};
 	},
 	created() {
@@ -51,7 +54,34 @@ export default {
 			console.log(this.roundTables.length);
 		});
 	},
+	mounted() {
+		// window对象，所有浏览器都支持window对象。它表示浏览器窗口，监听滚动事件
+		window.addEventListener('scroll', this.scrollToTop);
+
+		window.addEventListener('scroll', this.scrollDs);
+	},
 	methods: {
+		backToTop() {
+			//加定时器，平滑过渡回到顶部
+			let timer = setInterval(() => {
+				let ispeed = Math.floor(-this.scrollTop / 5);
+				document.documentElement.scrollTop = document.body.scrollTop = this.scrollTop + ispeed;
+				if (this.scrollTop === 0) {
+					clearInterval(timer);
+				}
+			}, 16);
+		},
+		// 计算距离顶部的高度，当高度大于60显示回顶部图标，小于60则隐藏
+		scrollToTop() {
+			let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+			this.scrollTop = scrollTop;
+			if (this.scrollTop > 1000) {
+				this.btnFlag = true;
+			} else {
+				this.btnFlag = false;
+			}
+		},
+
 		loadMore() {
 			this.currentPage = this.currentPage + 1;
 			this.axios({
@@ -80,9 +110,6 @@ export default {
 				this.loadMore();
 			}
 		}
-	},
-	mounted() {
-		window.addEventListener('scroll', this.scrollDs);
 	}
 };
 </script>
@@ -97,37 +124,25 @@ export default {
 	// 渐变
 	background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(66, 66, 66));
 }
-.sss {
-	width: 50px;
-	height: 50px;
+.goto-top {
 	position: fixed;
-	right: 70px;
-	bottom: 40px;
-}
-@font-face {
-	font-family: 'iconfont'; /* project id 1434161 */
-	src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot');
-	src: url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff2') format('woff2'),
-		url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.woff') format('woff'), url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.ttf') format('truetype'),
-		url('//at.alicdn.com/t/font_1434161_m8mre9tvvce.svg#iconfont') format('svg');
-}
-.iconfont {
-	font-family: 'iconfont' !important;
-	font-size: 16px;
-	font-style: normal;
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-stroke-width: 0.2px;
-	-moz-osx-font-smoothing: grayscale;
+	right: 30px;
+	bottom: 30px;
+	width: 40px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	cursor: pointer;
 }
 .all {
 	background-color: rgb(245, 245, 245);
 }
-
 .topp {
 	position: relative;
 	left: 25px;
 	height: 60px;
-	background-color: rgb(255,255,255);
+	background-color: rgb(255, 255, 255);
 	width: 82%;
 	border-bottom: 1px solid #ebebeb;
 	.yuan {
@@ -157,7 +172,7 @@ export default {
 	display: flex;
 	flex-wrap: wrap;
 	width: 82%;
-	background-color: rgb(255,255,255);
+	background-color: rgb(255, 255, 255);
 }
 .explore {
 	box-shadow: 2px 5px 5px #aaa;

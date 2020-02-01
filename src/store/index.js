@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		token: '111',
+		token: '11',
 		baseUrl: 'http://localhost:8080/api',
 		user: {
 			id: 1,

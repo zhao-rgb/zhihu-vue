@@ -1,8 +1,4 @@
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+
 
 img {
 	border: none;
@@ -40,8 +36,8 @@ a:active {
 .zh-container {
 	width: 80%;
 	margin-left: 230px;
-	padding-top: 65px;
-	background-color: white;
+	margin-top: 10px;
+	background-color: #f6f6f6;
 }
 
 .zh-row {
@@ -50,12 +46,12 @@ a:active {
 }
 
 /* 栅格 */
-.row {
+/* .row {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
 	padding: 10px;
-}
+} */
 
 .zh-col-12 {
 	flex: 1 1 100%;

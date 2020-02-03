@@ -170,11 +170,7 @@ export default {
 	margin-right: 40px;
 	margin-top: 14px;
 }
-.router-link-active {
-	border-bottom: 2px solid blue;
-	color: black;
-	font-size: 16px;
-}
+
 .gutter {
 	position: relative;
 	.Popover {
@@ -267,6 +263,8 @@ a:hover {
 .router-link-active {
 	color: #444;
 	font-weight: 600;
+	border-bottom: 2px solid blue;
+	font-size: 16px;
 }
 .router-link-active:after {
 	position: absolute;

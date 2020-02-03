@@ -1,5 +1,5 @@
 <template>
-	<div class="zh-container"><h3>关注</h3></div>
+	<div><h3>关注</h3></div>
 </template>
 
 <script>

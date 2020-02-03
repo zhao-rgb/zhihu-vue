@@ -158,7 +158,9 @@ ul {
 	text-align: justify;
 }
 
-
+.pull-right{
+	float: right;
+}
 
 /* ----------------------------flex布局设置------------------------------ */
 .d-flex {
@@ -799,6 +801,10 @@ ul {
 	color: #0c89ff;
 }
 
+.deep-blue {
+	color: #175199;
+}
+
 .light-grey {
 	color: #8591a7;
 }
@@ -848,6 +854,13 @@ ul {
 	overflow: hidden;
 }
 
+/* 四行省略号 */
+.ellipsis-4 {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	overflow: hidden;
+}
 
 /* 蓝色文本按钮 */
 .blue-txt-btn {

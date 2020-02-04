@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 //推荐数据
 var recommendList = require('./src/data/recommend.json')
-
+//关注数据
+var followList = require('./src/data/follow.json')
 //各类热榜数据
 var totalList = require('./src/data/total.json')
 var digitalList = require('./src/data/digital.json')
@@ -32,13 +33,13 @@ module.exports = {
 					data: recommendList
 				})
 			})
-			// app.get('/api/follow', (req, res) => {
-			// 	res.json({
-			// 		code: 1,
-			// 		msg: '成功',
-			// 		data: followList
-			// 	})
-			// })
+			app.get('/api/follow', (req, res) => {
+				res.json({
+					code: 1,
+					msg: '成功',
+					data: followList
+				})
+			})
 			app.get('/api/hot-lists/total', (req, res) => {
 				res.json({
 					code: 1,

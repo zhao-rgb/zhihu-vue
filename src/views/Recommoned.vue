@@ -6,7 +6,7 @@
 				<h3 v-else class="mb-2">{{ item.target.question.title }}</h3>
 				<div v-if="!flags[index]">
 					<div class="d-flex" v-if="item.target.thumbnail">
-						<div class="col-3 mr-3"><img :src="item.target.thumbnail" class="fill tiny-round" /></div>
+						<div class="col-3 mr-3 tup"><img :src="item.target.thumbnail" class="fill tiny-round" /></div>
 
 						<div class="col-9">
 							<p class="ellipsis-4 pr-2">{{ item.target.author.name }}:{{ item.target.excerpt }}</p>
@@ -46,10 +46,10 @@
 						<span>{{ item.target.author.headline }}</span>
 					</div>
 					<p class="light-grey mt-2 mb-2">{{ item.target.voteup_count }}人赞同了该回答</p>
-					<div v-html="item.target.content" class="content"></div>
+					<div v-html="item.target.content"></div>
 				</div>
 			</div>
-			<ul class="sticky-bar d-flex align-items-center " :class="{ active: flags[index] }">
+			<ul class="d-flex align-items-center " :class="{ active: flags[index] }">
 				<button class="d-block blue-txt-btn pl-2 pr-2 ml-4 link">
 					<svg class="blue-icon" viewBox="0 0 24 24" width="10" height="10">
 						<path
@@ -166,16 +166,13 @@ export default {
 		bottom: -2px;
 	}
 }
+.tup{
+	height: 100px;
+}
 .avatar {
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background-color: #fff;
-}
-.sticky-bar {
-	position: sticky;
-	bottom: 0;
-	z-index: 998;
 	background-color: #fff;
 }
 .col-3 {
@@ -186,6 +183,10 @@ export default {
 	}
 }
 .active {
+	position: sticky;
+	bottom: 0;
+	z-index: 999;
+	background-color: #fff;
 	width: 100%;
 	height: 50px;
 	border: 1px solid #ddd;

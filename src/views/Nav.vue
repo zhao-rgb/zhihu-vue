@@ -152,7 +152,7 @@ export default {
 	position: sticky;
 	top: 0;
 	height: 52px;		
-	z-index: 999;
+	z-index: 1000;
 }
 .hide-bar {
 	position: absolute;
@@ -274,7 +274,6 @@ a:hover {
 	height: 3px;
 	content: '';
 	color: #44446e;
-	font-weight: 600;
-	
+	font-weight: 600;	
 }
 </style>

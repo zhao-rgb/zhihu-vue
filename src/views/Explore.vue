@@ -40,19 +40,21 @@
 			</svg>
 			<h2 class="zui">圆桌讨论</h2>
 		</div>
+		
 		<div class="row">
 			<div class="exploree" v-for="(item, index) in roundTables" :key="index">
 				<img :src="item.banner" />
 				<h3 class="name">{{ item.name }}</h3>
 				<button class="butt"><h4>关注圆桌</h4></button>
 				<h5 class="liu">{{ item.includeCount }}位嘉宾参与 | {{ item.visitsCount }}次浏览</h5>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="left">
 						<p>{{ item.urlToken }}</p>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
+		
 		<div class="k">
 			<router-link to="roundtable"><button class="btn-circle">查看更多圆桌></button></router-link>
 		</div>
@@ -115,19 +117,17 @@
 			<router-link to="/lan"><button class="btn-circle">查看更多专栏></button></router-link>
 		</div>
 
-
-          <div class="footer">
-			  <footer class="ExploreHomePage-footer">
-			  	<a href="https://liukanshan.zhihu.com" target="_blank" rel="noopener noreferrer">刘看山</a>
-			  	<a href="https://www.zhihu.com/question/19581624" target="_blank" rel="noopener noreferrer">知乎指南</a>
-			  	<a href="https://www.zhihu.com/terms" target="_blank" rel="noopener noreferrer">知乎协议</a>
-			  	<a href="https://www.zhihu.com/app" target="_blank" rel="noopener noreferrer">应用</a>
-			  	<a href="https://app.mokahr.com/apply/zhihu/3819" target="_blank" rel="noopener noreferrer">工作</a>
-			  	<a href="https://www.zhihu.com/contact" target="_blank" rel="noopener noreferrer">联系我们</a>
-			  	<span>© 2020 知乎</span>
-			  </footer>
-		  </div>
-		
+		<div class="footer">
+			<footer class="ExploreHomePage-footer">
+				<a href="https://liukanshan.zhihu.com" target="_blank" rel="noopener noreferrer">刘看山</a>
+				<a href="https://www.zhihu.com/question/19581624" target="_blank" rel="noopener noreferrer">知乎指南</a>
+				<a href="https://www.zhihu.com/terms" target="_blank" rel="noopener noreferrer">知乎协议</a>
+				<a href="https://www.zhihu.com/app" target="_blank" rel="noopener noreferrer">应用</a>
+				<a href="https://app.mokahr.com/apply/zhihu/3819" target="_blank" rel="noopener noreferrer">工作</a>
+				<a href="https://www.zhihu.com/contact" target="_blank" rel="noopener noreferrer">联系我们</a>
+				<span>© 2020 知乎</span>
+			</footer>
+		</div>
 	</div>
 </template>
 
@@ -222,6 +222,34 @@ export default {
 	margin: 1%;
 	height: 430px;
 	background-color: rgb(255, 255, 255);
+	img {
+		border-radius: 5px;
+		width: 50%;
+		float: right;
+		height: 250px;
+	}
+	.name {
+		position: absolute;
+		bottom: 70%;
+		left: 5%;
+	}
+	.butt {
+		position: absolute;
+		border: none;
+		background-color: rgb(245, 245, 245);
+		color: rgb(30, 134, 255);
+		height: 40px;
+		width: 80px;
+		bottom: 45%;
+		left: 80%;
+		border-radius: 5px;
+	}
+	.liu {
+		position: absolute;
+		bottom: 55%;
+		left: 8%;
+	}
+	
 }
 .explo {
 	position: relative;
@@ -325,32 +353,8 @@ export default {
 	}
 }
 
-.butt {
-	position: absolute;
-	border: none;
-	background-color: rgb(245, 245, 245);
-	color: rgb(30, 134, 255);
-	height: 40px;
-	width: 80px;
-	bottom: 45%;
-	left: 80%;
-	border-radius: 5px;
-}
-.liu {
-	position: absolute;
-	bottom: 55%;
-	left: 8%;
-}
-.name {
-	position: absolute;
-	bottom: 70%;
-	left: 5%;
-}
-.exploree img {
-	border-radius: 5px;
-	width: 100%;
-	height: 250px;
-}
+
+
 .left {
 	height: 100px;
 	width: 80%;
@@ -359,6 +363,7 @@ export default {
 .left h5 {
 	color: darkgray;
 }
+
 .right {
 	height: 100px;
 	width: 20%;
@@ -442,13 +447,13 @@ export default {
 		}
 	}
 }
-.footer{
+.footer {
 	position: relative;
 	height: 195px;
 	.ExploreHomePage-footer {
 		position: absolute;
 		left: 360px;
-		margin-top: 64px;		
+		margin-top: 64px;
 		align-items: center;
 		height: 24px;
 		font-size: 13px;

@@ -27,9 +27,9 @@
 				</div>
 				<div class="d-flex p-2 mb-4" v-else>
 					<div class="fruid-col-12">
-						<p class="ellipsis">{{ item.target.excerpt }}</p>
+						<p class="ellipsis ml-2">{{ item.target.excerpt }}</p>
 						<span class="read-more link" @click="change(index)">
-							<span class="deep-blue">阅读全文</span>
+							<span class="deep-blue ml-2">阅读全文</span>
 							<svg class="deep-blue-icon" viewBox="0 0 24 24" width="24" height="24">
 								<path
 									d="M12 13L8.285 9.218a.758.758 0 0 0-1.064 0 .738.738 0 0 0 0 1.052l4.249 4.512a.758.758 0 0 0 1.064 0l4.246-4.512a.738.738 0 0 0 0-1.052.757.757 0 0 0-1.063 0L12.002 13z"

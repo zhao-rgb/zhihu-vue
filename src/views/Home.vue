@@ -316,7 +316,7 @@ export default {
 		scrollToTop() {
 			let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 			this.scrollTop = scrollTop;
-			if (this.scrollTop > 1000) {
+			if (this.scrollTop > 800) {
 				this.btnFlag = true;
 			} else {
 				this.btnFlag = false;

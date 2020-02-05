@@ -97,11 +97,13 @@ export default {
 			this.axios.get('/api/hot-lists/' + param).then(res => {
 				this.tabContent.splice(index, 0, res.data.data.data);
 			});
+			
 			if (param == 'total') {
 				this.$router.push('/home/hot');
 			} else {
 				this.$router.push('/home/hot?list=' + param);
 			}
+			
 		}
 	}
 };

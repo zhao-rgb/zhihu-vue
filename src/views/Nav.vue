@@ -110,7 +110,7 @@
 								></path>
 							</g>
 						</svg>
-						<li class="nav-item1"><router-link to="/home/recommend">推荐</router-link></li>
+						<li class="nav-item1"><router-link to="/home/recommoned">推荐</router-link></li>
 						<li class="nav-item1"><router-link to="/home/follow">关注</router-link></li>
 						<li class="nav-item1"><router-link to="/home/hot">热榜</router-link></li>
 						
@@ -197,32 +197,35 @@ export default {
 	height: 52px;		
 	z-index: 1000;
 }
-
-
-.router-link-active {
-	color: #444;
-	font-weight: 600;
-	border-bottom: 2px solid blue;
-	font-size: 16px;
-}
 .hide-bar {
 	position: absolute;
 	top: 0;
 	left: 10%;
 	right: 10%;
 	height: 52px;
-	line-height: 50px;
-	
+	line-height: 50px;	
 }
-// .router-link-active {
-// 	font-weight: 500;
-// 	color: #007aff;
-// 	font-size: 16px;
-// }
-.hide-bar .router-link-active:after {
-	opacity: 0;
+.nav-item {
+	margin-right: 40px;
+	margin-top: 15px;
+	color: #8590a6;
+	.router-link-active {
+		color: #444;
+		font-weight: 600;
+		border-bottom: 2px solid blue;
+		font-size: 16px;
+	}
 }
-
+.nav-item1{
+	margin-right: 40px;
+	margin-top: 15px;
+	color: #8590a6;
+	.router-link-active {
+		font-weight: 500;
+		color: #007aff;
+		font-size: 16px;
+	}
+}
 
 a {
 	position: relative;
@@ -280,16 +283,6 @@ a:hover {
 	cursor: pointer;
 	border: 1px solid;
 	border-radius: 3px;
-}
-.nav-item {
-	margin-right: 40px;
-	margin-top: 15px;
-	color: #8590a6;
-}
-.nav-item1{
-	margin-right: 40px;
-	margin-top: 15px;
-	color: #8590a6;
 }
 .Zi--Bell {
 	position: absolute;

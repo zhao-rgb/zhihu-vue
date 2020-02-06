@@ -40,21 +40,31 @@
 			</svg>
 			<h2 class="zui">圆桌讨论</h2>
 		</div>
-		
+
 		<div class="row">
 			<div class="exploree" v-for="(item, index) in roundTables" :key="index">
-				<img :src="item.banner" />
-				<h3 class="name">{{ item.name }}</h3>
-				<button class="butt"><h4>关注圆桌</h4></button>
-				<h5 class="liu">{{ item.includeCount }}位嘉宾参与 | {{ item.visitsCount }}次浏览</h5>
-				<!-- <div class="row">
-					<div class="left">
-						<p>{{ item.urlToken }}</p>
+				<div class="roundtable-card">
+					<button class="btn-follow-table" ref="btn">关注圆桌</button>
+					<div class="card-img-wrapper" ref="box">
+						<img :src="item.banner" ref="bgImg" />
+						<div class="mask" ref="mask1"></div>
+						<div class="mask" ref="mask2"></div>
 					</div>
-				</div> -->
+
+					<div class="info">
+						<h3 class="mb-4">{{ item.name }}</h3>
+						<p>越是前景光明，越要居安思危。打败你的并不一定是你的敌人，而是自己的故步自封。 而是自己的故步自封.而是自己的故步自封</p>
+					</div>
+					<div class="content">
+						<p>可以推荐几个值得长期投资的基金吗？</p>
+						<p class="meta">456个回答</p>
+						<p>可以推荐几个值得长期投资的基金吗？</p>
+						<p class="meta">456个回答</p>
+					</div>
+				</div>
 			</div>
 		</div>
-		
+
 		<div class="k">
 			<router-link to="roundtable"><button class="btn-circle">查看更多圆桌></button></router-link>
 		</div>
@@ -103,7 +113,7 @@
 			<h2 class="zui">专栏</h2>
 		</div>
 		<div class="row">
-			<div class="lan" v-for="(item, index) in columnss" :key="index">
+			<div class="lan" v-for="(item, index) in columnsList" :key="index">
 				<img :src="item.imageUrl" />
 				<span class="he">{{ item.title }}</span>
 				<p class="zhu">{{ item.followers }}关注 {{ item.articlesCount }}文章</p>
@@ -133,32 +143,72 @@
 
 <script>
 export default {
-	name: 'hot',
+	name: 'explore',
 	data() {
 		return {
 			specials: [],
 			roundTables: [],
 			favorites: [],
-			columnss: [],
+			columnsList: [],
 			answerContent: null
 		};
 	},
 	created() {
-		this.axios.get(this.$store.state.baseUrl + '/special').then(res => {
+		this.axios.get(this.$store.state.baseUrl + '/explore').then(res => {
 			console.log(res);
-			this.specials = res.data.data;
-		});
-		this.axios.get(this.$store.state.baseUrl + '/roundTable').then(res => {
-			console.log(res);
-			this.roundTables = res.data.data;
-		});
-		this.axios.get(this.$store.state.baseUrl + '/favorite').then(res => {
-			console.log(res);
-			this.favorites = res.data.data;
-		});
-		this.axios.get(this.$store.state.baseUrl + '/columns').then(res => {
-			console.log(res);
-			this.columnss = res.data.data;
+			this.specials = res.data.data.specials;
+			this.roundTables = res.data.data.roundTables;
+			this.favorites = res.data.data.favorites;
+			this.columnsList = res.data.data.columnsList;
+			this.$nextTick(() => {
+				//获得循环中的引用对象，都将会是数组的形式
+				let boxArr = this.$refs.box;
+				let imgArry = this.$refs.bgImg;
+				let btnArr = this.$refs.btn;
+				let mask1Arr = this.$refs.mask1;
+				let mask2Arr = this.$refs.mask2;
+				//遍历，对每个对象进行处理
+				for (var i = 0, len = boxArr.length; i < len; i++) {
+					let box = boxArr[i];
+					let img = imgArry[i];
+					let btn = btnArr[i];
+					let mask1 = mask1Arr[i];
+					let mask2 = mask2Arr[i];
+					//第三方库，可以获取图片的主色、次色等
+					RGBaster.colors(img, {
+						success: function(payload) {
+							// payload.dominant是主色，payload.secondary是次色, payload.palette是调色板，含多个主要颜色数组,RGB形式表示
+							this.dominant = payload.dominant;
+							this.secondary = payload.secondary;
+							// console.log('主色：' + payload.dominant);
+							//去掉rgb的外层rgb字母和括号，得到112,34,56这样的值
+							let str = payload.dominant.substring(4, payload.dominant.length - 1);
+							//按逗号分割，得到字符串数组
+							let strArr = str.split(',');
+							//分别获得r,g,b的值，并转为整型
+							let r = parseInt(strArr[0]);
+							let g = parseInt(strArr[1]);
+							let b = parseInt(strArr[2]);
+							// console.log(r + '=>' + g + '=>' + b);
+							//定义两个透明度的值
+							let a1 = 0;
+							let a2 = 0.5;
+							//创建两个rgba颜色，用来生成遮罩层的渐变色
+							let color1 = `rgba(${r},${g},${b},${a1})`;
+							let color2 = `rgba(${r},${g},${b},${a2})`;
+							// console.log('颜色1：' + color1);
+							// console.log('颜色2：' + color2);
+							//圆桌卡片顶部整宽部分背景色设置为图片主色
+							box.style.backgroundColor = this.dominant;
+							//右侧logo图覆盖两层蒙版，使用以下渐变色规则
+							mask1.style.background = 'linear-gradient(to right,' + this.dominant + ' 0%,' + color1 + ' 100%)';
+							mask2.style.background = 'linear-gradient(to right,' + color2 + ' 0%,' + color1 + ' 100%)';
+							//关注按钮的文字颜色，使用图片主色
+							btn.style.color = this.dominant;
+						}
+					});
+				}
+			});
 		});
 	},
 	methods: {
@@ -222,34 +272,64 @@ export default {
 	margin: 1%;
 	height: 430px;
 	background-color: rgb(255, 255, 255);
-	img {
-		border-radius: 5px;
-		width: 50%;
-		float: right;
-		height: 250px;
-	}
-	.name {
+}
+.roundtable-card {
+	height: 430px;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px 0 rgba(26, 26, 26, 0.1);
+	background-color: #fff;
+	position: relative;
+	.btn-follow-table {
 		position: absolute;
-		bottom: 70%;
+		right: 10%;
+		top: 40%;
+		flex-shrink: 0;
+		width: 88px;
+		height: 34px;
+		background-color: #fff;
+		font-size: 14px;
+		font-weight: 600;
+		border-radius: 3px;
+		z-index: 200;
+	}
+	.card-img-wrapper {
+		position: relative;
+		width: 100%;
+		height: 240px;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		img,
+		.mask {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 240px;
+			height: 240px;
+			border-top-right-radius: 5px;
+		}
+		img {
+			z-index: 90;
+		}
+		.mask {
+			z-index: 100;
+		}
+	}
+	.info {
+		position: absolute;
+		top: 15%;
 		left: 5%;
+		width: 65%;
+		color: #fff;
+		z-index: 200;
 	}
-	.butt {
+	.content {
 		position: absolute;
-		border: none;
-		background-color: rgb(245, 245, 245);
-		color: rgb(30, 134, 255);
-		height: 40px;
-		width: 80px;
-		bottom: 45%;
-		left: 80%;
-		border-radius: 5px;
+		left: 5%;
+		bottom: 10%;
+		line-height: 26px;
 	}
-	.liu {
-		position: absolute;
-		bottom: 55%;
-		left: 8%;
-	}
-	
 }
 .explo {
 	position: relative;
@@ -352,8 +432,6 @@ export default {
 		}
 	}
 }
-
-
 
 .left {
 	height: 100px;

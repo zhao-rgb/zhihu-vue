@@ -11,7 +11,7 @@
 			<h3 v-else class="mb-2 ml-3 mt-1">{{ item.target.question.title }}</h3>
 			<div v-if="!flags[index]">
 				<div class="d-flex p-2" v-if="item.target.thumbnail">
-					<div class="fruid-col-3 mr-3"><img :src="item.target.thumbnail" class="fill tiny-round" /></div>
+					<div class="fruid-col-3 mr-3 ml-2"><img :src="item.target.thumbnail" class="fill tiny-round" /></div>
 					<div class="fruid-col-9">
 						<p class="ellipsis-4">{{ item.target.author.name }}:{{ item.target.excerpt }}</p>
 						<span class="read-more link" @click="change(index)">
@@ -47,7 +47,7 @@
 				<div v-html="item.target.content"></div>
 			</div>
 
-			<ul class="d-flex align-items-center mb-3" :class="{ active: flags[index] }">
+			<ul class="d-flex align-items-center mb-3 ml-n2" :class="{ active: flags[index] }">
 				<button class="d-block blue-txt-btn pl-3 pr-3 ml-4 link">
 					<svg class="blue-icon" viewBox="0 0 24 24" width="10" height="10">
 						<path
@@ -135,11 +135,11 @@ export default {
 			this.followList = res.data.data.data;
 			//定义一个正则规则，用来处理富文本中的图片
 			const regex = new RegExp('<img', 'gi');
-			for (var i = 0; i < this.recommenedList.length; i++) {
+			for (var i = 0; i < this.followList.length; i++) {
 				//给每篇文章添加一个标记，默认为false，表示未展开全文
 				this.flags.splice(i, 0, false);
 				//将富文本中的图片处理大小
-				this.recommenedList[i].target.content = this.recommenedList[i].target.content.replace(regex, `<img style="max-width: 100%; height: auto"`);
+				this.followList[i].target.content = this.followList[i].target.content.replace(regex, `<img style="max-width: 100%; height: auto"`);
 			}
 		});
 	},

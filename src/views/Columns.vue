@@ -429,6 +429,5 @@ export default {
 }
 a {
 	color: grey;
-	
 }
 </style>

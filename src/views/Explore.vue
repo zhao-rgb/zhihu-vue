@@ -53,13 +53,13 @@
 
 					<div class="info">
 						<h3 class="mb-4">{{ item.name }}</h3>
-						<p>越是前景光明，越要居安思危。打败你的并不一定是你的敌人，而是自己的故步自封。 而是自己的故步自封.而是自己的故步自封</p>
+						<p>新型冠状病毒来势汹汹，举国上下的战“疫”中，不能忘记的是：紧急时期也有法。</p>
 					</div>
 					<div class="content">
-						<p>可以推荐几个值得长期投资的基金吗？</p>
-						<p class="meta">456个回答</p>
-						<p>可以推荐几个值得长期投资的基金吗？</p>
-						<p class="meta">456个回答</p>
+						<p>为抵御疫情，中央及各地方都出台了哪些惠民政策？</p>
+						<p class="meta">478个回答</p>
+						<p>电影《神奇动物2：格林德沃之罪》中有哪些细思极恐的细节？</p>
+						<p class="meta">490个回答</p>
 					</div>
 				</div>
 			</div>
@@ -267,11 +267,9 @@ export default {
 }
 .exploree {
 	position: relative;
-	box-shadow: 2px 5px 5px #aaa;
 	width: 41%;
 	margin: 1%;
 	height: 430px;
-	background-color: rgb(255, 255, 255);
 }
 .roundtable-card {
 	height: 430px;

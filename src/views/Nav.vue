@@ -52,7 +52,7 @@
 
 					
 					
-					<img class="im" :src="user.avatar" v-if="token" @click="show =!show"/>
+					<img class="im" :src="user.avatarUrl" v-if="this.user !== null" @click="show =!show"/>
 					<span v-else class="im"><router-link to="/login">登录</router-link></span>
 					<transition name="fade">
 												<ul class="fill-white border shadow profile-box" v-if="show">
@@ -132,12 +132,11 @@
 export default {
 	name: 'nav',
 	data() {
-		return {
-			token: this.$store.state.token,
-			user: this.$store.state.user,
+		return {	
 			fixed: true,
 			show: false,
-			popUp: false
+			popUp: false,
+			user: JSON.parse(localStorage.getItem('user')),
 		};
 	},
 	mounted() {
@@ -169,10 +168,10 @@ export default {
 				this.fixed = scrolled <= 152;
 			}
 		},
-		logout(event){
-			this.token = '';
-			this.show = false;
-			this.$store.commit('setToken', '');
+		logout(event) {
+				this.user = null;
+				this.show = false;
+				localStorage.clear();				
 		}
 	}
 };
@@ -311,7 +310,7 @@ a:hover {
 	height: 30px;
 	position: absolute;
 	right: 55px;
-	top: 14px;
+	top: 16px;
 	cursor: pointer;
 }
 .Zi--Search{

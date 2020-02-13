@@ -1,7 +1,8 @@
 <template>
 	<div>
+		<!-- {{date | dateFilter("yyyy-mm-dd hh:mm:ss")}} -->
 		<div v-for="(item, index) in followList" :key="index" class="card fill-white tiny-round border-bottom ">
-			<p class="light-grey p-3">赵肖龙赞同了文章 · 19 分钟前</p>
+			<p class="light-grey p-3">赵肖龙赞同了文章 · 19 分钟前 </p>
 			<div class="d-inline-flex">
 				<img :src="item.target.author.avatar_url" class="mr-2 ml-3" width="24px" height="24px" />
 				<h4 class="mr-2">{{ item.target.author.name }}</h4>
@@ -148,6 +149,61 @@ export default {
 		change(index) {
 			//将flag数组索引为index的项置反，注意splice用法，不要直接给数组元素赋值（无法监听flag变化）
 			this.flags.splice(index, 1, !this.flags[index]);
+		}
+	},
+	filters:{
+		dateFilter:function(data,format = ""){
+			var dt = new Date(data);
+			var y = dt.getFullYear();
+			//padStart：字符串补全
+			var m = (dt.getMonth()+1).toString().padStart(2,"0");
+			var d = dt.getDate().toString().padStart(2,"0");
+			var h = dt.getHours().toString().padStart(2,"0");
+			var mm = dt.getMinutes().toString().padStart(2,"0");
+			var s = dt.getSeconds().toString().padStart(2,"0");
+			
+			if(format.toLocaleLowerCase() === "yyyy-mm-dd" || 
+			   format.toLocaleLowerCase() === ""){
+				return `${y}-${m}-${d}`;
+			} else if(format.toLocaleLowerCase() === "yyyy/mm/dd") {
+				return `${y}/${m}/${d}`;
+			} else if(format.toLocaleLowerCase() === "yyyy-mm-dd hh:mm:ss") {
+				return `${y}-${m}-${d} ${h}:${mm}:${s}`;
+			} else if(format.toLocaleLowerCase() === "yyyy/mm/dd hh:mm:ss"){
+				return `${y}/${m}/${d} ${h}:${mm}:${s}`;
+			} else{
+				return `输入的时间格式有误`;
+			}
+		},
+		//时间的计算
+		date(time){
+			let oldDate = new Date(time) //提取之前发布的时间
+			let newDate = new Date()     //读取电脑当前时间
+			var dayNum  = "";            //定一个全局变量来存时间
+			var getTime = (newDate.getTime()-oldDate.getTime())/1000; //计算时间
+			
+			if(getTime < 60*5){
+				dayNum = "刚刚";
+			}else if(getTime >= 60*5 && getTime < 60*60){
+				dayNum = parseInt(getTime / 60) + "分钟前";
+			}else if(getTime >= 3600 && getTime < 3600*24){
+				dayNum = parseInt(getTime / 3600) + "小时前";
+			}else if(getTime >= 3600 * 24 && getTime < 3600 * 24 * 30){
+				dayNum = parseInt(getTime / 3600 /24) + "天前";
+			}else if(getTime >= 3600 * 24 * 30 && getTime < 3600 * 24 * 30 *12){
+				dayNum = parseInt(getTime / 3600 /24 /30) + "个月前";
+			}else if(time >=3600*24*30*12){
+				dayNum = parseInt(getTime /3600/24/30/12) + "年前";
+			}
+			
+			let year = oldDate.getFullYear();
+			let month = oldDate.getMonth()+1;
+			let day = oldDate.getDate();
+			let hour = oldDate.getHours();
+			let minute = oldDate.getMinutes();
+			let second = oldDate.getSeconds();
+			
+			return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second+"---------"+dayNum;
 		}
 	}
 };
